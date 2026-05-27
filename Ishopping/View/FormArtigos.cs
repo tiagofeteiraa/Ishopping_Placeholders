@@ -44,8 +44,6 @@ namespace Ishopping.View
             dataGridViewArtigos.Columns["Id"].Width = 50;
             dataGridViewArtigos.Columns["Nome"].Width = 300;
             dataGridViewArtigos.Columns["Preco"].Width = 100;
-            dataGridViewArtigos.Columns["IdTipoArtigo"].Width = 50;
-            dataGridViewArtigos.Columns["ItensCompra"].Width = 50;
         }
 
         private void DataGridViewArtigos_SelectionChanged(object sender, EventArgs e)

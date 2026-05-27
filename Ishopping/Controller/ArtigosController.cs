@@ -39,7 +39,6 @@ namespace Ishopping.Controller
                 {
                     Nome = nome.Trim(),
                     Preco = preco,
-                    IdTipoArtigo = 1
                 };
 
                 db.Artigos.Add(artigo);
