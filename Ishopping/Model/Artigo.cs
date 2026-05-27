@@ -11,12 +11,12 @@ namespace Ishopping.Model
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public decimal? Preco { get; set; }
+        public decimal Preco { get; set; }
 
-        // FK
+
+        //chave sec
         public int IdTipoArtigo { get; set; }
 
-        
         public virtual ICollection<ItemCompra> ItensCompra { get; set; }
     }
 }

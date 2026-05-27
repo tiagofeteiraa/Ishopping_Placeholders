@@ -15,6 +15,7 @@ namespace Ishopping.Model
         public string NomeCompra { get; set; }
 
        
+        //chave sec
         public int IdCriadoPor { get; set; }
         public int? IdAlteradoPor { get; set; }
 
@@ -25,7 +26,7 @@ namespace Ishopping.Model
         public DateTime? DataFecho { get; set; }
         public bool Fechada { get; set; }
         
-        public decimal TotalGasto { get; set; }
+        public decimal GastoTotal { get; set; }
 
         public virtual ICollection<ItemCompra> ItensCompras { get; set; }
 

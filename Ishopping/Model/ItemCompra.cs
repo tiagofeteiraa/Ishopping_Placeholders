@@ -13,7 +13,7 @@ namespace Ishopping.Model
         public int IdCompra { get; set; }
         public int IdArtigo { get; set; }
 
-        //FK
+        //chave sec
         public int IdCriadoPor { get; set; }
         public int? IdAlteradoPor { get; set; }
 

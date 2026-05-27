@@ -18,7 +18,7 @@ namespace Ishopping.Model
         public DateTime DataCriacao { get; set; }
         public DateTime? DataAlteracao { get; set; }
 
-        // FK
+        // chave sec
         public string CriadoPor { get; set; }
         public string AlteradoPor { get; set; }
         
