@@ -30,5 +30,12 @@ namespace Ishopping.View
         {
             this.Close();
         }
+
+        private void btnArtigos_Click(object sender, EventArgs e)
+        {
+            FormArtigos formArtigos = new FormArtigos();
+            formArtigos.Show();
+            this.Hide();
+        }
     }
 }

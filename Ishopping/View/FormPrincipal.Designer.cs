@@ -62,6 +62,7 @@
             this.btnArtigos.TabIndex = 1;
             this.btnArtigos.Text = "Artigos";
             this.btnArtigos.UseVisualStyleBackColor = true;
+            this.btnArtigos.Click += new System.EventHandler(this.btnArtigos_Click);
             // 
             // btnOrcamentos
             // 

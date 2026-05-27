@@ -16,5 +16,15 @@ namespace Ishopping.View
         {
             InitializeComponent();
         }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            FormPrincipal formPrincipal = Application.OpenForms["FormPrincipal"] as FormPrincipal;
+            if (formPrincipal != null)
+            {
+                formPrincipal.Show();
+            }
+            this.Close();
+        }
     }
 }
