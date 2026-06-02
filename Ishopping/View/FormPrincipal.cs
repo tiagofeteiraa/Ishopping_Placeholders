@@ -40,7 +40,8 @@ namespace Ishopping.View
 
         private void btnTiposArtigo_Click(object sender, EventArgs e)
         {
-
+            FormGestaoArtigos formTiposArtigo = new FormGestaoArtigos();
+            formTiposArtigo.ShowDialog();
         }
 
         private void btnOrcamentos_Click(object sender, EventArgs e)
