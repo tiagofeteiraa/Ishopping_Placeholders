@@ -37,5 +37,26 @@ namespace Ishopping.View
             formArtigos.ShowDialog();
            
         }
+
+        private void btnTiposArtigo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOrcamentos_Click(object sender, EventArgs e)
+        {
+            FormOrcamentos formOrcamentos = new FormOrcamentos();
+            formOrcamentos.ShowDialog();
+        }
+
+        private void btnCompras_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEstatisticas_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using Ishopping.Model;
 
 namespace Ishopping.Controller
 {
+    // Controlador responsável pelas operações dos artigos
     internal class ArtigosController
     {
+        // Carrega e mostra todos os artigos na tabela
+        public static void MostrarArtigos(DataGridView grid)
+        {
+            // Obtém a lista de artigos da base de dados
+            List<Artigo> artigos = ObterArtigos();
+            // Associa os dados à tabela
+            grid.DataSource = artigos;
+        }
+
+        // Obtém todos os artigos da base de dados, ordenados alfabeticamente por nome
         public static List<Artigo> ObterArtigos()
         {
             using (IShoppingContext db = new IShoppingContext())
@@ -17,100 +29,124 @@ namespace Ishopping.Controller
             }
         }
 
-        public static bool AdicionarArtigo(string nome, decimal preco, out string mensagem)
+        // Adiciona um novo artigo à base de dados
+        public static void AdicionarArtigo(string nome, string preco)
         {
-            mensagem = "";
-
+            // Valida se o nome foi preenchido
             if (string.IsNullOrWhiteSpace(nome))
             {
-                mensagem = "Indique o nome do artigo.";
-                return false;
+                MessageBox.Show("Indique o nome do artigo.");
+                return;
             }
 
-            if (preco < 0)
+            // Valida se o preço é um número decimal válido maior que zero
+            if (!decimal.TryParse(preco, out decimal precoDecimal) || precoDecimal <= 0)
             {
-                mensagem = "O preço não pode ser negativo.";
-                return false;
+                MessageBox.Show("Indique um preço válido.");
+                return;
             }
 
             using (IShoppingContext db = new IShoppingContext())
             {
+                // Cria uma nova instância de artigo com os dados fornecidos
                 Artigo artigo = new Artigo
                 {
                     Nome = nome.Trim(),
-                    Preco = preco,
+                    Preco = precoDecimal,
                 };
 
+                // Adiciona o artigo à base de dados e guarda as alterações
                 db.Artigos.Add(artigo);
                 db.SaveChanges();
 
-                mensagem = "Artigo adicionado com sucesso.";
-                return true;
+                MessageBox.Show("Artigo adicionado com sucesso.");
             }
         }
 
-        public static bool AtualizarArtigo(int id, string nome, decimal preco, out string mensagem)
+        // Atualiza um artigo existente na base de dados
+        public static void AtualizarArtigo(string id, string nome, string preco)
         {
-            mensagem = "";
+            // Valida se o ID é um número inteiro válido
+            if (!int.TryParse(id, out int idInt) || idInt <= 0)
+            {
+                MessageBox.Show("Indique um ID válido.");
+                return;
+            }
 
+            // Valida se o nome foi preenchido
             if (string.IsNullOrWhiteSpace(nome))
             {
-                mensagem = "Indique o nome do artigo.";
-                return false;
+                MessageBox.Show("Indique o nome do artigo.");
+                return;
             }
 
-            if (preco < 0)
+            // Valida se o preço é um número decimal válido maior que zero
+            if (!decimal.TryParse(preco, out decimal precoDecimal) || precoDecimal <= 0)
             {
-                mensagem = "O preço não pode ser negativo.";
-                return false;
+                MessageBox.Show("Indique um preço válido.");
+                return;
             }
 
             using (IShoppingContext db = new IShoppingContext())
             {
-                Artigo artigo = db.Artigos.FirstOrDefault(a => a.Id == id);
+                // Procura o artigo pelo ID
+                Artigo artigo = db.Artigos.FirstOrDefault(a => a.Id == idInt);
 
+                // Se o artigo não existir, mostra mensagem de erro
                 if (artigo == null)
                 {
-                    mensagem = "Artigo não encontrado.";
-                    return false;
+                    MessageBox.Show("Artigo não encontrado.");
+                    return;
                 }
 
+                // Atualiza os dados do artigo
                 artigo.Nome = nome.Trim();
-                artigo.Preco = preco;
+                artigo.Preco = precoDecimal;
 
+                // Guarda as alterações na base de dados
                 db.SaveChanges();
 
-                mensagem = "Artigo atualizado com sucesso.";
-                return true;
+                MessageBox.Show("Artigo atualizado com sucesso.");
             }
         }
 
-        public static bool EliminarArtigo(int id, out string mensagem)
+        // Elimina um artigo da base de dados
+        public static void EliminarArtigo(string id)
         {
-            mensagem = "";
+            // Valida se o ID é um número inteiro válido
+            if (!int.TryParse(id, out int idInt) || idInt <= 0)
+            {
+                MessageBox.Show("Indique um ID válido.");
+                return;
+            }
 
             using (IShoppingContext db = new IShoppingContext())
             {
-                Artigo artigo = db.Artigos.FirstOrDefault(a => a.Id == id);
+                // Procura o artigo pelo ID
+                Artigo artigo = db.Artigos.FirstOrDefault(a => a.Id == idInt);
 
+                // Se o artigo não existir, mostra mensagem de erro
                 if (artigo == null)
                 {
-                    mensagem = "Artigo não encontrado.";
-                    return false;
+                    MessageBox.Show("Artigo não encontrado.");
+                    return;
                 }
 
+                // Remove o artigo da base de dados
                 db.Artigos.Remove(artigo);
+                // Guarda as alterações na base de dados
                 db.SaveChanges();
 
-                mensagem = "Artigo eliminado com sucesso.";
-                return true;
+                MessageBox.Show("Artigo eliminado com sucesso.");
             }
         }
 
+        // Obtém um artigo específico pelo ID
         public static Artigo ObterArtigoPorId(int id)
         {
             using (IShoppingContext db = new IShoppingContext())
             {
+                // Procura o artigo pelo ID
                 return db.Artigos.FirstOrDefault(a => a.Id == id);
             }
         }
