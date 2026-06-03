@@ -95,7 +95,7 @@ namespace Ishopping.View
             LimparCampos();
         }
 
-        // Evento do botão Atualizar - modifica um artigo existente
+        // Evento do botão Atualizar 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
             // Obtém o ID, nome e preço dos campos de texto, removendo espaços desnecessários
@@ -110,7 +110,7 @@ namespace Ishopping.View
             LimparCampos();
         }
 
-        // Evento do botão Eliminar - remove um artigo existente
+        // Evento do botão Eliminar 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             // Obtém o ID do artigo a eliminar

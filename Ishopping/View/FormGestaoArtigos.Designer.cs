@@ -29,10 +29,19 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.Pesquisar = new System.Windows.Forms.Button();
+            this.comboBoxArtigos = new System.Windows.Forms.ComboBox();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnExibirTodos = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxTipoArtigo = new System.Windows.Forms.TextBox();
+            this.textBoxDescricao = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnAdicionar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnAtualizar = new System.Windows.Forms.Button();
+            this.textBoxID = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,76 +50,176 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(83, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(241, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(248, 34);
+            this.label1.Size = new System.Drawing.Size(306, 42);
             this.label1.TabIndex = 8;
             this.label1.Text = "Tipos de artigos";
             this.label1.UseWaitCursor = true;
             // 
-            // comboBox1
+            // comboBoxArtigos
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(15, 81);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(295, 21);
-            this.comboBox1.TabIndex = 9;
-            this.comboBox1.UseWaitCursor = true;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxArtigos.FormattingEnabled = true;
+            this.comboBoxArtigos.Location = new System.Drawing.Point(70, 84);
+            this.comboBoxArtigos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxArtigos.Name = "comboBoxArtigos";
+            this.comboBoxArtigos.Size = new System.Drawing.Size(392, 24);
+            this.comboBoxArtigos.TabIndex = 9;
+            this.comboBoxArtigos.UseWaitCursor = true;
+            this.comboBoxArtigos.SelectedIndexChanged += new System.EventHandler(this.comboBoxArtigos_SelectedIndexChanged);
             // 
-            // Pesquisar
+            // btnPesquisar
             // 
-            this.Pesquisar.Location = new System.Drawing.Point(321, 81);
-            this.Pesquisar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Pesquisar.Name = "Pesquisar";
-            this.Pesquisar.Size = new System.Drawing.Size(69, 19);
-            this.Pesquisar.TabIndex = 10;
-            this.Pesquisar.Text = "Pesquisar";
-            this.Pesquisar.UseVisualStyleBackColor = true;
-            this.Pesquisar.UseWaitCursor = true;
-            this.Pesquisar.Click += new System.EventHandler(this.Pesquisar_Click);
+            this.btnPesquisar.Location = new System.Drawing.Point(478, 84);
+            this.btnPesquisar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(92, 23);
+            this.btnPesquisar.TabIndex = 10;
+            this.btnPesquisar.Text = "Pesquisar";
+            this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.UseWaitCursor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 120);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(70, 123);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(470, 144);
+            this.dataGridView1.Size = new System.Drawing.Size(627, 197);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.UseWaitCursor = true;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // button1
+            // btnExibirTodos
             // 
-            this.button1.Location = new System.Drawing.Point(399, 81);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 19);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Exibir todos";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.UseWaitCursor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnExibirTodos.Location = new System.Drawing.Point(582, 84);
+            this.btnExibirTodos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExibirTodos.Name = "btnExibirTodos";
+            this.btnExibirTodos.Size = new System.Drawing.Size(113, 23);
+            this.btnExibirTodos.TabIndex = 12;
+            this.btnExibirTodos.Text = "Exibir todos";
+            this.btnExibirTodos.UseVisualStyleBackColor = true;
+            this.btnExibirTodos.UseWaitCursor = true;
+            this.btnExibirTodos.Click += new System.EventHandler(this.btnExibirTodos_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(67, 340);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 18);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Tipo Artigo:";
+            this.label2.UseWaitCursor = true;
+            // 
+            // textBoxTipoArtigo
+            // 
+            this.textBoxTipoArtigo.Location = new System.Drawing.Point(156, 336);
+            this.textBoxTipoArtigo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxTipoArtigo.Name = "textBoxTipoArtigo";
+            this.textBoxTipoArtigo.Size = new System.Drawing.Size(229, 22);
+            this.textBoxTipoArtigo.TabIndex = 15;
+            this.textBoxTipoArtigo.UseWaitCursor = true;
+            // 
+            // textBoxDescricao
+            // 
+            this.textBoxDescricao.Location = new System.Drawing.Point(156, 379);
+            this.textBoxDescricao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxDescricao.Multiline = true;
+            this.textBoxDescricao.Name = "textBoxDescricao";
+            this.textBoxDescricao.Size = new System.Drawing.Size(229, 56);
+            this.textBoxDescricao.TabIndex = 16;
+            this.textBoxDescricao.UseWaitCursor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(67, 379);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 18);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Descrição:";
+            this.label3.UseWaitCursor = true;
+            // 
+            // btnAdicionar
+            // 
+            this.btnAdicionar.Location = new System.Drawing.Point(562, 374);
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Size = new System.Drawing.Size(133, 23);
+            this.btnAdicionar.TabIndex = 18;
+            this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(562, 448);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(133, 23);
+            this.btnEliminar.TabIndex = 25;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnAtualizar
+            // 
+            this.btnAtualizar.Location = new System.Drawing.Point(562, 412);
+            this.btnAtualizar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(133, 23);
+            this.btnAtualizar.TabIndex = 24;
+            this.btnAtualizar.Text = "Atualizar";
+            this.btnAtualizar.UseVisualStyleBackColor = true;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
+            // 
+            // textBoxID
+            // 
+            this.textBoxID.Location = new System.Drawing.Point(614, 336);
+            this.textBoxID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(83, 22);
+            this.textBoxID.TabIndex = 23;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(582, 340);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(26, 18);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "ID:";
             // 
             // FormGestaoArtigos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 272);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(785, 498);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnAtualizar);
+            this.Controls.Add(this.textBoxID);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnAdicionar);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxDescricao);
+            this.Controls.Add(this.textBoxTipoArtigo);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnExibirTodos);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.Pesquisar);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.btnPesquisar);
+            this.Controls.Add(this.comboBoxArtigos);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormGestaoArtigos";
             this.Text = "Tipos de artigos";
             this.UseWaitCursor = true;
+            this.Load += new System.EventHandler(this.FormGestaoArtigos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -120,9 +229,18 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button Pesquisar;
+        private System.Windows.Forms.ComboBox comboBoxArtigos;
+        private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExibirTodos;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxTipoArtigo;
+        private System.Windows.Forms.TextBox textBoxDescricao;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnAdicionar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnAtualizar;
+        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.Label label4;
     }
 }
