@@ -115,8 +115,14 @@
     <EmbeddedResource Include="View\FormArtigos.resx">
       <DependentUpon>FormArtigos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FormGestaoArtigos.resx">
+      <DependentUpon>FormGestaoArtigos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormOrcamentos.resx">
+      <DependentUpon>FormOrcamentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>

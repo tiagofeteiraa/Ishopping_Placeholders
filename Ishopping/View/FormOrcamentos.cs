@@ -82,10 +82,5 @@ namespace Ishopping.View
         private void dataGridViewOrcamentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
-
-
-        private void comboBoxMes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

@@ -167,7 +167,6 @@
             this.comboBoxMes.Name = "comboBoxMes";
             this.comboBoxMes.Size = new System.Drawing.Size(227, 24);
             this.comboBoxMes.TabIndex = 33;
-            this.comboBoxMes.SelectedIndexChanged += new System.EventHandler(this.comboBoxMes_SelectedIndexChanged);
             // 
             // textBoxAno
             // 
