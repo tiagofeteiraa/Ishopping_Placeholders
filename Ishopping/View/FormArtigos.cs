@@ -17,8 +17,9 @@ namespace Ishopping.View
         // Evento que ocorre quando o formulário é carregado
         private void FormArtigos_Load(object sender, EventArgs e)
         {
-            MostrarArtigos();
-            ConfigurarGrid();
+            ArtigosController.MostrarArtigos(dataGridViewArtigos);
+            ArtigosController.ConfigurarGrid(dataGridViewArtigos);
+            ArtigosController.CarregarTiposArtigos(comboBoxTipoArtigo);
             // Subscreve o evento de mudança de visibilidade do formulário
             this.VisibleChanged += FormArtigos_VisibleChanged;
         }
@@ -29,56 +30,36 @@ namespace Ishopping.View
             // Se o formulário ficar visível, atualiza a lista de artigos e limpa os campos
             if (this.Visible)
             {
-                MostrarArtigos();
-                LimparCampos();
+                ArtigosController.MostrarArtigos(dataGridViewArtigos);
+                ArtigosController.CarregarTiposArtigos(comboBoxTipoArtigo);
+                ArtigosController.LimparCampos(textBoxID, textBoxNomeArtigo, textBoxPreco, comboBoxTipoArtigo);
             }
-        }
-
-        // Carrega e mostra todos os artigos na tabela
-        private void MostrarArtigos()
-        {
-            ArtigosController.MostrarArtigos(dataGridViewArtigos);
-        }
-
-        // Configura as propriedades da tabela de artigos
-        private void ConfigurarGrid()
-        {
-            // Define o modo de seleção para seleccionar a linha inteira
-            dataGridViewArtigos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            // Desativa a possibilidade de seleccionar múltiplas linhas
-            dataGridViewArtigos.MultiSelect = false;
-
-            // Verifica se a tabela tem colunas
-            if (dataGridViewArtigos.ColumnCount == 0)
-                return;
-
-            // Define a largura de cada coluna
-            dataGridViewArtigos.Columns["Id"].Width = 100;
-            dataGridViewArtigos.Columns["Nome"].Width = 100;
-            dataGridViewArtigos.Columns["Preco"].Width = 100;
-        }
-
-        // Limpa todos os campos de texto do formulário
-        private void LimparCampos()
-        {
-            textBoxID.Clear();
-            textBoxNomeArtigo.Clear();
-            textBoxPreco.Clear();
         }
 
         // Evento que ocorre quando a seleção da linha na tabela muda
         private void DataGridViewArtigos_SelectionChanged(object sender, EventArgs e)
         {
+            // Obtém os dados da linha selecionada
+            Dictionary<string, string> dados = ArtigosController.ObterDadosLinhaSelecionada(dataGridViewArtigos);
+
             // Se nenhuma linha estiver selecionada, sai do método
-            if (dataGridViewArtigos.SelectedRows.Count == 0)
+            if (dados == null)
                 return;
 
-            // Obtém a linha selecionada
-            var linha = dataGridViewArtigos.SelectedRows[0];
             // Preenche os campos de texto com os dados da linha selecionada
-            textBoxID.Text = linha.Cells["Id"].Value.ToString();
-            textBoxNomeArtigo.Text = linha.Cells["Nome"].Value.ToString();
-            textBoxPreco.Text = linha.Cells["Preco"].Value.ToString();
+            textBoxID.Text = dados["Id"];
+            textBoxNomeArtigo.Text = dados["Nome"];
+            textBoxPreco.Text = dados["Preco"];
+
+            // Preenche o comboBox com o tipo de artigo da linha selecionada
+            if (int.TryParse(dados["Id"], out int idArtigo))
+            {
+                Artigo artigo = ArtigosController.ObterArtigoPorId(idArtigo);
+                if (artigo != null)
+                {
+                    comboBoxTipoArtigo.SelectedValue = artigo.IdTipoArtigo;
+                }
+            }
         }
 
         // Evento do botão Adicionar - cria um novo artigo
@@ -87,12 +68,13 @@ namespace Ishopping.View
             // Obtém o nome e preço dos campos de texto, removendo espaços desnecessários
             string nome = textBoxNomeArtigo.Text.Trim();
             string preco = textBoxPreco.Text.Trim();
+            int idTipoArtigo = comboBoxTipoArtigo.SelectedIndex >= 0 ? (int)comboBoxTipoArtigo.SelectedValue : -1;
 
             // Envia os dados para o controlador adicionar o artigo
-            ArtigosController.AdicionarArtigo(nome, preco);
+            ArtigosController.AdicionarArtigo(nome, preco, idTipoArtigo);
             // Atualiza a tabela e limpa os campos
-            MostrarArtigos();
-            LimparCampos();
+            ArtigosController.MostrarArtigos(dataGridViewArtigos);
+            ArtigosController.LimparCampos(textBoxID, textBoxNomeArtigo, textBoxPreco, comboBoxTipoArtigo);
         }
 
         // Evento do botão Atualizar 
@@ -102,12 +84,13 @@ namespace Ishopping.View
             string id = textBoxID.Text.Trim();
             string nome = textBoxNomeArtigo.Text.Trim();
             string preco = textBoxPreco.Text.Trim();
+            int idTipoArtigo = comboBoxTipoArtigo.SelectedIndex >= 0 ? (int)comboBoxTipoArtigo.SelectedValue : -1;
 
             // Envia os dados para o controlador atualizar o artigo
-            ArtigosController.AtualizarArtigo(id, nome, preco);
+            ArtigosController.AtualizarArtigo(id, nome, preco, idTipoArtigo);
             // Atualiza a tabela e limpa os campos
-            MostrarArtigos();
-            LimparCampos();
+            ArtigosController.MostrarArtigos(dataGridViewArtigos);
+            ArtigosController.LimparCampos(textBoxID, textBoxNomeArtigo, textBoxPreco, comboBoxTipoArtigo);
         }
 
         // Evento do botão Eliminar 
@@ -123,10 +106,9 @@ namespace Ishopping.View
             {
                 ArtigosController.EliminarArtigo(id);
                 // Atualiza a tabela e limpa os campos
-                MostrarArtigos();
-                LimparCampos();
+                ArtigosController.MostrarArtigos(dataGridViewArtigos);
+                ArtigosController.LimparCampos(textBoxID, textBoxNomeArtigo, textBoxPreco, comboBoxTipoArtigo);
             }
         }
-
     }
 }

@@ -15,6 +15,7 @@ namespace Ishopping.Controller
         {
             List<TipoArtigo> tiposArtigos = ObterTiposArtigos();
             grid.DataSource = tiposArtigos;
+            ConfigurarGrid(grid);
         }
 
         // Obtém todos os tipos de artigos da base de dados, ordenados alfabeticamente por nome
@@ -28,12 +29,69 @@ namespace Ishopping.Controller
             }
         }
 
+        // Configura as propriedades da tabela de tipos de artigos
+        public static void ConfigurarGrid(DataGridView grid)
+        {
+            // Define o modo de seleção para seleccionar a linha inteira
+            grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            // Desativa a possibilidade de seleccionar múltiplas linhas
+            grid.MultiSelect = false;
+
+            // Verifica se a tabela tem colunas
+            if (grid.ColumnCount == 0)
+                return;
+
+            // Define a largura de cada coluna
+            grid.Columns["Id"].Width = 30;
+            grid.Columns["Nome"].Width = 100;
+            grid.Columns["Descricao"].Width = 100;
+        }
+
+        // Limpa todos os campos de texto do formulário
+        public static void LimparCampos(TextBox textBoxID, TextBox textBoxNome, TextBox textBoxDescricao)
+        {
+            textBoxID.Clear();
+            textBoxNome.Clear();
+            textBoxDescricao.Clear();
+        }
+
+        // Obtém os dados da linha selecionada na tabela
+        public static Dictionary<string, string> ObterDadosLinhaSelecionada(DataGridView grid)
+        {
+            // Se nenhuma linha estiver selecionada, retorna nulo
+            if (grid.SelectedRows.Count == 0)
+                return null;
+
+            // Obtém a linha selecionada
+            var linha = grid.SelectedRows[0];
+
+            // Retorna um dicionário com os dados da linha
+            return new Dictionary<string, string>
+            {
+                { "Id", linha.Cells["Id"].Value?.ToString() ?? string.Empty },
+                { "Nome", linha.Cells["Nome"].Value?.ToString() ?? string.Empty },
+                { "Descricao", linha.Cells["Descricao"].Value?.ToString() ?? string.Empty }
+            };
+        }
+
         // Obtém a lista de nomes dos tipos de artigos (para comboBox)
         public static List<string> GetTiposArtigos()
         {
             using (IShoppingContext db = new IShoppingContext())
             {
                 return db.TipoArtigos.Select(t => t.Nome).ToList();
+            }
+        }
+
+        // Pesquisa tipos de artigos pelo nome
+        public static List<TipoArtigo> PesquisarTipoArtigo(string nomePesquisa)
+        {
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                return db.TipoArtigos
+                    .Where(t => t.Nome.Contains(nomePesquisa))
+                    .OrderBy(t => t.Nome)
+                    .ToList();
             }
         }
 
@@ -154,38 +212,12 @@ namespace Ishopping.Controller
                     return;
                 }
 
-                // Verifica se existem artigos associados a este tipo
-                if (tipoArtigo.Artigos != null && tipoArtigo.Artigos.Count > 0)
-                {
-                    MessageBox.Show("Não pode eliminar este tipo de artigo pois existem artigos associados.");
-                    return;
-                }
-
                 // Remove o tipo de artigo da base de dados
                 db.TipoArtigos.Remove(tipoArtigo);
+                // Guarda as alterações na base de dados
                 db.SaveChanges();
 
                 MessageBox.Show("Tipo de artigo eliminado com sucesso.");
-            }
-        }
-
-        // Pesquisa tipos de artigos por nome
-        public static List<TipoArtigo> PesquisarTipoArtigo(string nome)
-        {
-            // Valida se o nome foi preenchido
-            if (string.IsNullOrWhiteSpace(nome))
-            {
-                MessageBox.Show("Indique o nome do tipo de artigo para pesquisar.");
-                return new List<TipoArtigo>();
-            }
-
-            using (IShoppingContext db = new IShoppingContext())
-            {
-                // Pesquisa tipos de artigos que contenham o nome fornecido (case-insensitive)
-                return db.TipoArtigos
-                    .Where(t => t.Nome.Contains(nome.Trim()))
-                    .OrderBy(t => t.Nome)
-                    .ToList();
             }
         }
 

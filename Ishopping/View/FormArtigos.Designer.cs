@@ -40,6 +40,8 @@
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxTipoArtigo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtigos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +65,6 @@
             this.dataGridViewArtigos.RowHeadersWidth = 51;
             this.dataGridViewArtigos.Size = new System.Drawing.Size(596, 253);
             this.dataGridViewArtigos.TabIndex = 11;
-
             // 
             // label2
             // 
@@ -89,26 +90,26 @@
             // 
             // textBoxNomeArtigo
             // 
-            this.textBoxNomeArtigo.Location = new System.Drawing.Point(113, 366);
-            this.textBoxNomeArtigo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxNomeArtigo.Location = new System.Drawing.Point(137, 368);
+            this.textBoxNomeArtigo.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNomeArtigo.Name = "textBoxNomeArtigo";
             this.textBoxNomeArtigo.Size = new System.Drawing.Size(173, 20);
             this.textBoxNomeArtigo.TabIndex = 14;
             // 
             // textBoxPreco
             // 
-            this.textBoxPreco.Location = new System.Drawing.Point(113, 397);
-            this.textBoxPreco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPreco.Location = new System.Drawing.Point(137, 399);
+            this.textBoxPreco.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPreco.Name = "textBoxPreco";
-            this.textBoxPreco.Size = new System.Drawing.Size(63, 20);
+            this.textBoxPreco.Size = new System.Drawing.Size(173, 20);
             this.textBoxPreco.TabIndex = 15;
             // 
             // btnAdicionar
             // 
-            this.btnAdicionar.Location = new System.Drawing.Point(39, 436);
-            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdicionar.Location = new System.Drawing.Point(39, 476);
+            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(136, 19);
+            this.btnAdicionar.Size = new System.Drawing.Size(136, 26);
             this.btnAdicionar.TabIndex = 16;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
@@ -128,17 +129,17 @@
             // textBoxID
             // 
             this.textBoxID.Location = new System.Drawing.Point(572, 359);
-            this.textBoxID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxID.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxID.Name = "textBoxID";
             this.textBoxID.Size = new System.Drawing.Size(63, 20);
             this.textBoxID.TabIndex = 19;
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.Location = new System.Drawing.Point(414, 436);
-            this.btnAtualizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAtualizar.Location = new System.Drawing.Point(411, 476);
+            this.btnAtualizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(100, 19);
+            this.btnAtualizar.Size = new System.Drawing.Size(100, 26);
             this.btnAtualizar.TabIndex = 20;
             this.btnAtualizar.Text = "Atualizar";
             this.btnAtualizar.UseVisualStyleBackColor = true;
@@ -146,10 +147,10 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(534, 436);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminar.Location = new System.Drawing.Point(535, 476);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(100, 19);
+            this.btnEliminar.Size = new System.Drawing.Size(100, 26);
             this.btnEliminar.TabIndex = 21;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -165,11 +166,32 @@
             this.label5.TabIndex = 22;
             this.label5.Text = "Artigos:";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(36, 430);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(85, 15);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Tipo de Artigo:";
+            // 
+            // comboBoxTipoArtigo
+            // 
+            this.comboBoxTipoArtigo.FormattingEnabled = true;
+            this.comboBoxTipoArtigo.Location = new System.Drawing.Point(137, 430);
+            this.comboBoxTipoArtigo.Name = "comboBoxTipoArtigo";
+            this.comboBoxTipoArtigo.Size = new System.Drawing.Size(173, 21);
+            this.comboBoxTipoArtigo.TabIndex = 24;
+            // 
             // FormArtigos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 474);
+            this.ClientSize = new System.Drawing.Size(676, 524);
+            this.Controls.Add(this.comboBoxTipoArtigo);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAtualizar);
@@ -182,7 +204,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridViewArtigos);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormArtigos";
             this.Text = "FormArtigos";
             this.Load += new System.EventHandler(this.FormArtigos_Load);
@@ -206,5 +228,7 @@
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBoxTipoArtigo;
     }
 }

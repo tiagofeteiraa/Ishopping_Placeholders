@@ -17,6 +17,8 @@ namespace Ishopping.Model
         //chave sec
         public int IdTipoArtigo { get; set; }
 
+        public virtual TipoArtigo TipoArtigo { get; set; }
+
         public virtual ICollection<ItemCompra> ItensCompra { get; set; }
     }
 }
