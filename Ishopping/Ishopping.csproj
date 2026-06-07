@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ArtigosController.cs" />
+    <Compile Include="Controller\ComprasController.cs" />
+    <Compile Include="Controller\ItemNaoPrevistosController.cs" />
+    <Compile Include="Controller\ItemPrevistosController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\OrcamentosController.cs" />
     <Compile Include="Controller\TipoArtigoController.cs" />
@@ -71,11 +74,35 @@
     <Compile Include="Model\Sessao.cs" />
     <Compile Include="Model\TipoArtigo.cs" />
     <Compile Include="Model\Utilizador.cs" />
+    <Compile Include="View\FormAdicionarItemNaoPrevisto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormAdicionarItemNaoPrevisto.Designer.cs">
+      <DependentUpon>FormAdicionarItemNaoPrevisto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormAdicionarItemPrevisto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormAdicionarItemPrevisto.Designer.cs">
+      <DependentUpon>FormAdicionarItemPrevisto.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormArtigos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\FormArtigos.Designer.cs">
       <DependentUpon>FormArtigos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormCompras.Designer.cs">
+      <DependentUpon>FormCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormEditarCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormEditarCompra.Designer.cs">
+      <DependentUpon>FormEditarCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormGestaoArtigos.cs">
       <SubType>Form</SubType>
@@ -91,6 +118,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\FormModoCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormModoCompra.Designer.cs">
+      <DependentUpon>FormModoCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormOrcamentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,14 +145,23 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\FormAdicionarItemPrevisto.resx">
+      <DependentUpon>FormAdicionarItemPrevisto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormArtigos.resx">
       <DependentUpon>FormArtigos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormEditarCompra.resx">
+      <DependentUpon>FormEditarCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormGestaoArtigos.resx">
       <DependentUpon>FormGestaoArtigos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormModoCompra.resx">
+      <DependentUpon>FormModoCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormOrcamentos.resx">
       <DependentUpon>FormOrcamentos.cs</DependentUpon>

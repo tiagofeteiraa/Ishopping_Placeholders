@@ -13,17 +13,20 @@ namespace Ishopping.View
 {
     public partial class FormPrincipal : Form
     {
-        
-
         public FormPrincipal()
         {
             InitializeComponent();
-            
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            
+            MostrarComprasEmAberto();
+        }
+
+        private void MostrarComprasEmAberto()
+        {
+            ComprasController.MostrarCompras(dataGridViewComprasAberto, false);
+            ComprasController.ConfigurarGrid(dataGridViewComprasAberto);
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -35,7 +38,6 @@ namespace Ishopping.View
         {
             FormArtigos formArtigos = new FormArtigos();
             formArtigos.ShowDialog();
-           
         }
 
         private void btnTiposArtigo_Click(object sender, EventArgs e)
@@ -52,12 +54,27 @@ namespace Ishopping.View
 
         private void btnCompras_Click(object sender, EventArgs e)
         {
-
+            FormCompras formCompras = new FormCompras();
+            formCompras.ShowDialog();
+            MostrarComprasEmAberto();
         }
 
         private void btnEstatisticas_Click(object sender, EventArgs e)
         {
+          
+        }
 
+        // Duplo clique na lista de compras abre o Modo Compra
+        private void dataGridViewComprasAberto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var idVal = dataGridViewComprasAberto.Rows[e.RowIndex].Cells["Id"].Value;
+            if (idVal == null) return;
+
+            int id = (int)idVal;
+            FormModoCompra form = new FormModoCompra(id);
+            form.ShowDialog();
+            MostrarComprasEmAberto();
         }
     }
 }
