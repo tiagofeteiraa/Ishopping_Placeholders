@@ -145,6 +145,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\FormAdicionarItemNaoPrevisto.resx">
+      <DependentUpon>FormAdicionarItemNaoPrevisto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormAdicionarItemPrevisto.resx">
       <DependentUpon>FormAdicionarItemPrevisto.cs</DependentUpon>
     </EmbeddedResource>

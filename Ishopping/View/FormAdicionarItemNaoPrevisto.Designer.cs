@@ -28,85 +28,135 @@
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItens)).BeginInit();
             this.SuspendLayout();
-
-            // label1
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
-            this.label1.Text = "Tipo de Artigo:";
-
+            // 
             // comboBoxTipoArtigo
-            this.comboBoxTipoArtigo.Location = new System.Drawing.Point(120, 12);
-            this.comboBoxTipoArtigo.Size = new System.Drawing.Size(200, 21);
+            // 
             this.comboBoxTipoArtigo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTipoArtigo.Location = new System.Drawing.Point(120, 12);
+            this.comboBoxTipoArtigo.Name = "comboBoxTipoArtigo";
+            this.comboBoxTipoArtigo.Size = new System.Drawing.Size(200, 21);
+            this.comboBoxTipoArtigo.TabIndex = 1;
             this.comboBoxTipoArtigo.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoArtigo_SelectedIndexChanged);
-
-            // label2
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 45);
-            this.label2.Text = "Artigo:";
-
+            // 
             // comboBoxArtigo
-            this.comboBoxArtigo.Location = new System.Drawing.Point(120, 42);
-            this.comboBoxArtigo.Size = new System.Drawing.Size(200, 21);
+            // 
             this.comboBoxArtigo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-
-            // label3
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 75);
-            this.label3.Text = "Qtd. Adquirida:";
-
+            this.comboBoxArtigo.Location = new System.Drawing.Point(120, 42);
+            this.comboBoxArtigo.Name = "comboBoxArtigo";
+            this.comboBoxArtigo.Size = new System.Drawing.Size(200, 21);
+            this.comboBoxArtigo.TabIndex = 3;
+            // 
             // textBoxQuantidade
+            // 
             this.textBoxQuantidade.Location = new System.Drawing.Point(120, 72);
+            this.textBoxQuantidade.Name = "textBoxQuantidade";
             this.textBoxQuantidade.Size = new System.Drawing.Size(80, 20);
-
-            // label4
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 105);
-            this.label4.Text = "Preço Unitário:";
-
+            this.textBoxQuantidade.TabIndex = 5;
+            // 
             // textBoxPreco
+            // 
             this.textBoxPreco.Location = new System.Drawing.Point(120, 102);
+            this.textBoxPreco.Name = "textBoxPreco";
             this.textBoxPreco.Size = new System.Drawing.Size(80, 20);
-
-            // label5
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 135);
-            this.label5.Text = "Observações:";
-
+            this.textBoxPreco.TabIndex = 7;
+            // 
             // textBoxObservacoes
+            // 
             this.textBoxObservacoes.Location = new System.Drawing.Point(120, 132);
+            this.textBoxObservacoes.Name = "textBoxObservacoes";
             this.textBoxObservacoes.Size = new System.Drawing.Size(200, 20);
-
-            // btnAdicionar
-            this.btnAdicionar.Location = new System.Drawing.Point(330, 128);
-            this.btnAdicionar.Size = new System.Drawing.Size(120, 26);
-            this.btnAdicionar.Text = "Adicionar Item";
-            this.btnAdicionar.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnAdicionar.ForeColor = System.Drawing.Color.White;
-            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
-
+            this.textBoxObservacoes.TabIndex = 9;
+            // 
             // dataGridViewItens
-            this.dataGridViewItens.Location = new System.Drawing.Point(12, 170);
-            this.dataGridViewItens.Size = new System.Drawing.Size(560, 230);
-            this.dataGridViewItens.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewItens.ReadOnly = true;
+            // 
             this.dataGridViewItens.AllowUserToAddRows = false;
-
+            this.dataGridViewItens.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewItens.Location = new System.Drawing.Point(12, 170);
+            this.dataGridViewItens.Name = "dataGridViewItens";
+            this.dataGridViewItens.ReadOnly = true;
+            this.dataGridViewItens.Size = new System.Drawing.Size(560, 230);
+            this.dataGridViewItens.TabIndex = 11;
+            // 
+            // btnAdicionar
+            // 
+            this.btnAdicionar.BackColor = System.Drawing.Color.White;
+            this.btnAdicionar.ForeColor = System.Drawing.Color.Black;
+            this.btnAdicionar.Location = new System.Drawing.Point(330, 128);
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Size = new System.Drawing.Size(120, 26);
+            this.btnAdicionar.TabIndex = 10;
+            this.btnAdicionar.Text = "Adicionar Item";
+            this.btnAdicionar.UseVisualStyleBackColor = false;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            // 
             // btnRemover
+            // 
+            this.btnRemover.BackColor = System.Drawing.Color.White;
+            this.btnRemover.ForeColor = System.Drawing.Color.Black;
             this.btnRemover.Location = new System.Drawing.Point(12, 410);
+            this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(110, 30);
+            this.btnRemover.TabIndex = 12;
             this.btnRemover.Text = "Remover Item";
-            this.btnRemover.BackColor = System.Drawing.Color.IndianRed;
-            this.btnRemover.ForeColor = System.Drawing.Color.White;
+            this.btnRemover.UseVisualStyleBackColor = false;
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
-
+            // 
             // btnFechar
+            // 
             this.btnFechar.Location = new System.Drawing.Point(460, 410);
+            this.btnFechar.Name = "btnFechar";
             this.btnFechar.Size = new System.Drawing.Size(112, 30);
+            this.btnFechar.TabIndex = 13;
             this.btnFechar.Text = "Fechar";
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
-
-            // Form
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tipo de Artigo:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Artigo:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Qtd. Adquirida:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 105);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Preço Unitário:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 135);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Observações:";
+            // 
+            // FormAdicionarItemNaoPrevisto
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 455);
@@ -124,11 +174,13 @@
             this.Controls.Add(this.dataGridViewItens);
             this.Controls.Add(this.btnRemover);
             this.Controls.Add(this.btnFechar);
+            this.Name = "FormAdicionarItemNaoPrevisto";
             this.Text = "Adicionar Itens Não Previstos";
             this.Load += new System.EventHandler(this.FormAdicionarItemNaoPrevisto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItens)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.ComboBox comboBoxTipoArtigo;

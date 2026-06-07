@@ -32,6 +32,23 @@ namespace Ishopping.Controller
             }
         }
 
+        // Valida se já existe um orçamento com o mesmo mês e ano
+        private static bool ExisteOrcamentoDuplicado(int ano, string mes, int? idExcluir = null)
+        {
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                var query = db.Orcamentos.Where(o => o.Ano == ano && o.Mes == mes.Trim());
+
+                // Se for atualização, exclui o registro atual da verificação
+                if (idExcluir.HasValue)
+                {
+                    query = query.Where(o => o.Id != idExcluir.Value);
+                }
+
+                return query.Any();
+            }
+        }
+
         // Adiciona um novo orçamento à base de dados
         public static void AdicionarOrcamento(string mes, string ano, string valor)
         {
@@ -53,6 +70,13 @@ namespace Ishopping.Controller
             if (!decimal.TryParse(valor, out decimal valorDecimal) || valorDecimal <= 0)
             {
                 MessageBox.Show("O valor máximo deve ser maior que zero.");
+                return;
+            }
+
+            // Valida se já existe um orçamento com o mesmo mês e ano
+            if (ExisteOrcamentoDuplicado(anoInt, mes))
+            {
+                MessageBox.Show($"Já existe um orçamento para {mes.Trim()} de {anoInt}.");
                 return;
             }
 
@@ -104,6 +128,13 @@ namespace Ishopping.Controller
             if (!decimal.TryParse(valor, out decimal valorDecimal) || valorDecimal <= 0)
             {
                 MessageBox.Show("O valor máximo deve ser maior que zero.");
+                return;
+            }
+
+            // Valida se já existe outro orçamento com o mesmo mês e ano (excluindo o atual)
+            if (ExisteOrcamentoDuplicado(anoInt, mes, idInt))
+            {
+                MessageBox.Show($"Já existe outro orçamento para {mes.Trim()} de {anoInt}.");
                 return;
             }
 
