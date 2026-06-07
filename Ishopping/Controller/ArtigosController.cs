@@ -7,56 +7,67 @@ using Ishopping.Model;
 
 namespace Ishopping.Controller
 {
-    // Controlador responsável pelas operações dos artigos
     internal class ArtigosController
     {
-        // Carrega e mostra todos os artigos na tabela
-        public static void MostrarArtigos(DataGridView grid)
+        // DTO para exibição na grid (evita o objeto TipoArtigo inteiro aparecer como coluna)
+        public class ArtigoGridDto
         {
-            // Obtém a lista de artigos da base de dados
-            List<Artigo> artigos = ObterArtigos();
-            // Associa os dados à tabela
-            grid.DataSource = artigos;
+            public int Id { get; set; }
+            public string Nome { get; set; }
+            public decimal Preco { get; set; }
+            public string TipoArtigo { get; set; }
         }
 
-        // Obtém todos os artigos da base de dados, ordenados alfabeticamente por nome
+        // Carrega e mostra todos os artigos na grid com o nome do tipo visível
+        public static void MostrarArtigos(DataGridView grid)
+        {
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                var lista = db.Artigos
+                    .Include(a => a.TipoArtigo)
+                    .OrderBy(a => a.Nome)
+                    .ToList()
+                    .Select(a => new ArtigoGridDto
+                    {
+                        Id = a.Id,
+                        Nome = a.Nome,
+                        Preco = a.Preco,
+                        TipoArtigo = a.TipoArtigo?.Nome ?? ""
+                    }).ToList();
+
+                grid.DataSource = lista;
+            }
+        }
+
+        // Obtém todos os artigos da base de dados
         public static List<Artigo> ObterArtigos()
         {
             using (IShoppingContext db = new IShoppingContext())
             {
                 return db.Artigos
-                    .Include(a => a.TipoArtigo)  // Carrega o TipoArtigo relacionado
+                    .Include(a => a.TipoArtigo)
                     .OrderBy(a => a.Nome)
                     .ToList();
             }
         }
 
-        // Configura as propriedades da tabela de artigos
+        // Configura as propriedades da grid
         public static void ConfigurarGrid(DataGridView grid)
         {
-            // Define o modo de seleção para seleccionar a linha inteira
             grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            // Desativa a possibilidade de seleccionar múltiplas linhas
             grid.MultiSelect = false;
 
-            // Verifica se a tabela tem colunas
-            if (grid.ColumnCount == 0)
-                return;
+            if (grid.ColumnCount == 0) return;
 
-            // Define a largura de cada coluna
-            grid.Columns["Id"].Width = 50;
-            grid.Columns["Nome"].Width = 100;
-            grid.Columns["Preco"].Width = 80;
-
-            // Se existir coluna TipoArtigo, configura a largura
-            if (grid.Columns.Contains("TipoArtigo"))
-            {
-                grid.Columns["TipoArtigo"].Width = 120;
-            }
+            if (grid.Columns.Contains("Id")) grid.Columns["Id"].Width = 50;
+            if (grid.Columns.Contains("Nome")) grid.Columns["Nome"].Width = 160;
+            if (grid.Columns.Contains("Preco")) grid.Columns["Preco"].Width = 80;
+            if (grid.Columns.Contains("TipoArtigo")) grid.Columns["TipoArtigo"].Width = 150;
         }
 
-        // Limpa todos os campos de texto do formulário
-        public static void LimparCampos(TextBox textBoxID, TextBox textBoxNome, TextBox textBoxPreco, ComboBox comboBoxTipoArtigo = null)
+        // Limpa os campos do formulário
+        public static void LimparCampos(TextBox textBoxID, TextBox textBoxNome,
+            TextBox textBoxPreco, ComboBox comboBoxTipoArtigo = null)
         {
             textBoxID.Clear();
             textBoxNome.Clear();
@@ -65,7 +76,7 @@ namespace Ishopping.Controller
                 comboBoxTipoArtigo.SelectedIndex = -1;
         }
 
-        // Carrega os tipos de artigos no comboBox
+        // Carrega os tipos de artigos num ComboBox
         public static void CarregarTiposArtigos(ComboBox comboBox)
         {
             using (IShoppingContext db = new IShoppingContext())
@@ -81,43 +92,33 @@ namespace Ishopping.Controller
             }
         }
 
-        // Obtém os dados da linha selecionada na tabela
+        // Obtém dados da linha selecionada na grid
         public static Dictionary<string, string> ObterDadosLinhaSelecionada(DataGridView grid)
         {
-            // Se nenhuma linha estiver selecionada, retorna nulo
-            if (grid.SelectedRows.Count == 0)
-                return null;
+            if (grid.SelectedRows.Count == 0) return null;
 
-            // Obtém a linha selecionada
             var linha = grid.SelectedRows[0];
-
-            // Retorna um dicionário com os dados da linha
             return new Dictionary<string, string>
             {
-                { "Id", linha.Cells["Id"].Value?.ToString() ?? string.Empty },
-                { "Nome", linha.Cells["Nome"].Value?.ToString() ?? string.Empty },
+                { "Id",    linha.Cells["Id"].Value?.ToString()    ?? string.Empty },
+                { "Nome",  linha.Cells["Nome"].Value?.ToString()  ?? string.Empty },
                 { "Preco", linha.Cells["Preco"].Value?.ToString() ?? string.Empty }
             };
         }
 
-        // Adiciona um novo artigo à base de dados
+        // Adiciona um novo artigo
         public static void AdicionarArtigo(string nome, string preco, int idTipoArtigo)
         {
-            // Valida se o nome foi preenchido
             if (string.IsNullOrWhiteSpace(nome))
             {
                 MessageBox.Show("Indique o nome do artigo.");
                 return;
             }
-
-            // Valida se o preço é um número decimal válido maior que zero
             if (!decimal.TryParse(preco, out decimal precoDecimal) || precoDecimal <= 0)
             {
                 MessageBox.Show("Indique um preço válido.");
                 return;
             }
-
-            // Valida se um tipo de artigo foi selecionado
             if (idTipoArtigo <= 0)
             {
                 MessageBox.Show("Selecione um tipo de artigo.");
@@ -126,15 +127,9 @@ namespace Ishopping.Controller
 
             using (IShoppingContext db = new IShoppingContext())
             {
-                // Valida se o tipo de artigo existe
                 TipoArtigo tipoArtigo = db.TipoArtigos.FirstOrDefault(t => t.Id == idTipoArtigo);
-                if (tipoArtigo == null)
-                {
-                    MessageBox.Show("Tipo de artigo inválido.");
-                    return;
-                }
+                if (tipoArtigo == null) { MessageBox.Show("Tipo de artigo inválido."); return; }
 
-                // Cria uma nova instância de artigo com os dados fornecidos
                 Artigo artigo = new Artigo
                 {
                     Nome = nome.Trim(),
@@ -142,39 +137,30 @@ namespace Ishopping.Controller
                     IdTipoArtigo = idTipoArtigo
                 };
 
-                // Adiciona o artigo à base de dados e guarda as alterações
                 db.Artigos.Add(artigo);
                 db.SaveChanges();
-
                 MessageBox.Show("Artigo adicionado com sucesso.");
             }
         }
 
-        // Atualiza um artigo existente na base de dados
+        // Atualiza um artigo existente
         public static void AtualizarArtigo(string id, string nome, string preco, int idTipoArtigo)
         {
-            // Valida se o ID é um número inteiro válido
             if (!int.TryParse(id, out int idInt) || idInt <= 0)
             {
                 MessageBox.Show("Indique um ID válido.");
                 return;
             }
-
-            // Valida se o nome foi preenchido
             if (string.IsNullOrWhiteSpace(nome))
             {
                 MessageBox.Show("Indique o nome do artigo.");
                 return;
             }
-
-            // Valida se o preço é um número decimal válido maior que zero
             if (!decimal.TryParse(preco, out decimal precoDecimal) || precoDecimal <= 0)
             {
                 MessageBox.Show("Indique um preço válido.");
                 return;
             }
-
-            // Valida se um tipo de artigo foi selecionado
             if (idTipoArtigo <= 0)
             {
                 MessageBox.Show("Selecione um tipo de artigo.");
@@ -183,40 +169,23 @@ namespace Ishopping.Controller
 
             using (IShoppingContext db = new IShoppingContext())
             {
-                // Procura o artigo pelo ID
                 Artigo artigo = db.Artigos.FirstOrDefault(a => a.Id == idInt);
+                if (artigo == null) { MessageBox.Show("Artigo não encontrado."); return; }
 
-                // Se o artigo não existir, mostra mensagem de erro
-                if (artigo == null)
-                {
-                    MessageBox.Show("Artigo não encontrado.");
-                    return;
-                }
-
-                // Valida se o tipo de artigo existe
                 TipoArtigo tipoArtigo = db.TipoArtigos.FirstOrDefault(t => t.Id == idTipoArtigo);
-                if (tipoArtigo == null)
-                {
-                    MessageBox.Show("Tipo de artigo inválido.");
-                    return;
-                }
+                if (tipoArtigo == null) { MessageBox.Show("Tipo de artigo inválido."); return; }
 
-                // Atualiza os dados do artigo
                 artigo.Nome = nome.Trim();
                 artigo.Preco = precoDecimal;
                 artigo.IdTipoArtigo = idTipoArtigo;
-
-                // Guarda as alterações na base de dados
                 db.SaveChanges();
-
                 MessageBox.Show("Artigo atualizado com sucesso.");
             }
         }
 
-        // Elimina um artigo da base de dados
+        // Elimina um artigo
         public static void EliminarArtigo(string id)
         {
-            // Valida se o ID é um número inteiro válido
             if (!int.TryParse(id, out int idInt) || idInt <= 0)
             {
                 MessageBox.Show("Indique um ID válido.");
@@ -225,21 +194,11 @@ namespace Ishopping.Controller
 
             using (IShoppingContext db = new IShoppingContext())
             {
-                // Procura o artigo pelo ID
                 Artigo artigo = db.Artigos.FirstOrDefault(a => a.Id == idInt);
+                if (artigo == null) { MessageBox.Show("Artigo não encontrado."); return; }
 
-                // Se o artigo não existir, mostra mensagem de erro
-                if (artigo == null)
-                {
-                    MessageBox.Show("Artigo não encontrado.");
-                    return;
-                }
-
-                // Remove o artigo da base de dados
                 db.Artigos.Remove(artigo);
-                // Guarda as alterações na base de dados
                 db.SaveChanges();
-
                 MessageBox.Show("Artigo eliminado com sucesso.");
             }
         }
@@ -249,10 +208,26 @@ namespace Ishopping.Controller
         {
             using (IShoppingContext db = new IShoppingContext())
             {
-                // Procura o artigo pelo ID, incluindo o tipo de artigo
                 return db.Artigos
                     .Include(a => a.TipoArtigo)
                     .FirstOrDefault(a => a.Id == id);
+            }
+        }
+
+        // Carrega artigos filtrados por tipo para um ComboBox
+        public static void CarregarArtigosPorTipo(int idTipo, ComboBox comboBoxArtigo)
+        {
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                var artigos = db.Artigos
+                    .Where(a => a.IdTipoArtigo == idTipo)
+                    .OrderBy(a => a.Nome)
+                    .ToList();
+
+                comboBoxArtigo.DataSource = artigos;
+                comboBoxArtigo.DisplayMember = "Nome";
+                comboBoxArtigo.ValueMember = "Id";
+                comboBoxArtigo.SelectedIndex = -1;
             }
         }
     }

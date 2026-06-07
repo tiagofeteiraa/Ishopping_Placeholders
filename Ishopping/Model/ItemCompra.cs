@@ -14,8 +14,8 @@ namespace Ishopping.Model
         public int IdArtigo { get; set; }
 
         //chave sec
-        public int IdCriadoPor { get; set; }
-        public int? IdAlteradoPor { get; set; }
+        public string CriadoPor { get; set; }
+        public string AlteradoPor { get; set; }
 
         public decimal QuantidadeAdquirida { get; set; }
         public decimal PrecoUnitario { get; set; }

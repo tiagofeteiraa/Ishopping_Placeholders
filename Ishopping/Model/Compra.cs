@@ -16,10 +16,10 @@ namespace Ishopping.Model
 
        
         //chave sec
-        public int IdCriadoPor { get; set; }
-        public int? IdAlteradoPor { get; set; }
+        public string CriadoPor { get; set; }
+        public string AlteradoPor { get; set; }
 
-        public int? IdFechadoPor { get; set; }
+        public string FechadoPor { get; set; }
         
         public DateTime? DataAlteracao { get; set; }
         public DateTime DataCriacao { get; set; }
