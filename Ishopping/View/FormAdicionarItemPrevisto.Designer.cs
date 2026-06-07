@@ -41,6 +41,7 @@
             this.comboBoxArtigo.Name = "comboBoxArtigo";
             this.comboBoxArtigo.Size = new System.Drawing.Size(200, 21);
             this.comboBoxArtigo.TabIndex = 3;
+            this.comboBoxArtigo.SelectedIndexChanged += new System.EventHandler(this.comboBoxArtigo_SelectedIndexChanged);
             // 
             // textBoxQuantidade
             // 

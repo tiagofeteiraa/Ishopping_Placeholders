@@ -45,6 +45,16 @@ namespace Ishopping.View
                 ItemNaoPrevistosController.CarregarArtigosPorTipo(idTipo, comboBoxArtigo);
         }
 
+        private void comboBoxArtigo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Preenche automaticamente o preço do artigo selecionado
+            if (comboBoxArtigo.SelectedValue is int idArtigo && idArtigo > 0)
+            {
+                decimal preco = ArtigosController.ObterPrecoArtigo(idArtigo);
+                textBoxPreco.Text = preco.ToString("F2");
+            }
+        }
+
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             if (comboBoxArtigo.SelectedValue == null)

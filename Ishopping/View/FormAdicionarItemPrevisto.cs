@@ -45,6 +45,11 @@ namespace Ishopping.View
                 ItemPrevistosController.CarregarArtigosPorTipo(idTipo, comboBoxArtigo);
         }
 
+        private void comboBoxArtigo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             if (comboBoxArtigo.SelectedValue == null)

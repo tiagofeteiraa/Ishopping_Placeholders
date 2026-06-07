@@ -233,5 +233,15 @@ namespace Ishopping.Controller
                 comboBoxArtigo.SelectedIndex = -1;
             }
         }
+
+        // Obtém o preço de um artigo pelo ID
+        public static decimal ObterPrecoArtigo(int idArtigo)
+        {
+            using (IShoppingContext db = new IShoppingContext())
+            {
+                Artigo artigo = db.Artigos.FirstOrDefault(a => a.Id == idArtigo);
+                return artigo?.Preco ?? 0;
+            }
+        }
     }
 }
