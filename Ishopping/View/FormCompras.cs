@@ -28,8 +28,8 @@ namespace Ishopping.View
         {
             // Filtrar por estado selecionado no ComboBox
             bool? filtro = null;
-            if (comboBoxFiltro.SelectedIndex == 1) filtro = false; // Abertas
-            if (comboBoxFiltro.SelectedIndex == 2) filtro = true;  // Fechadas
+            if (comboBoxFiltro.SelectedIndex == 1) filtro = true;  // Abertas
+            if (comboBoxFiltro.SelectedIndex == 2) filtro = false; // Fechadas
 
             ComprasController.MostrarCompras(dataGridViewCompras, filtro);
             ComprasController.ConfigurarGrid(dataGridViewCompras);
