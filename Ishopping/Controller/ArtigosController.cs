@@ -25,6 +25,7 @@ namespace Ishopping.Controller
             {
                 var lista = db.Artigos
                     .Include(a => a.TipoArtigo)
+                    .AsNoTracking()  // Adiciona isto para evitar problemas de rastreamento
                     .OrderBy(a => a.Nome)
                     .ToList()
                     .Select(a => new ArtigoGridDto
@@ -32,7 +33,7 @@ namespace Ishopping.Controller
                         Id = a.Id,
                         Nome = a.Nome,
                         Preco = a.Preco,
-                        TipoArtigo = a.TipoArtigo?.Nome ?? ""
+                        TipoArtigo = a.TipoArtigo != null ? a.TipoArtigo.Nome : "Sem Tipo"
                     }).ToList();
 
                 grid.DataSource = lista;
@@ -134,7 +135,8 @@ namespace Ishopping.Controller
                 {
                     Nome = nome.Trim(),
                     Preco = precoDecimal,
-                    IdTipoArtigo = idTipoArtigo
+                    IdTipoArtigo = idTipoArtigo,
+                    TipoArtigo = tipoArtigo
                 };
 
                 db.Artigos.Add(artigo);
@@ -178,6 +180,7 @@ namespace Ishopping.Controller
                 artigo.Nome = nome.Trim();
                 artigo.Preco = precoDecimal;
                 artigo.IdTipoArtigo = idTipoArtigo;
+                artigo.TipoArtigo = tipoArtigo;
                 db.SaveChanges();
                 MessageBox.Show("Artigo atualizado com sucesso.");
             }

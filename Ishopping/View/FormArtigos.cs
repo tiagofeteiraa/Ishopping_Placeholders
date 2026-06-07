@@ -65,14 +65,17 @@ namespace Ishopping.View
         // Evento do botão Adicionar - cria um novo artigo
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            // Obtém o nome e preço dos campos de texto, removendo espaços desnecessários
             string nome = textBoxNomeArtigo.Text.Trim();
             string preco = textBoxPreco.Text.Trim();
             int idTipoArtigo = comboBoxTipoArtigo.SelectedIndex >= 0 ? (int)comboBoxTipoArtigo.SelectedValue : -1;
 
-            // Envia os dados para o controlador adicionar o artigo
+            if (idTipoArtigo == -1)
+            {
+                MessageBox.Show("Por favor, selecione um tipo de artigo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             ArtigosController.AdicionarArtigo(nome, preco, idTipoArtigo);
-            // Atualiza a tabela e limpa os campos
             ArtigosController.MostrarArtigos(dataGridViewArtigos);
             ArtigosController.LimparCampos(textBoxID, textBoxNomeArtigo, textBoxPreco, comboBoxTipoArtigo);
         }
