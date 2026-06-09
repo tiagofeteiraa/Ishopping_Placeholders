@@ -45,7 +45,7 @@ namespace Ishopping.View
             if (sugestao == null) return;
 
             // Exibe a sugestão de orçamento para o próximo mês e a média dos últimos meses
-            lblSugestaoValor.Text = sugestao.SugestaoProximoMes.ToString("F2") + " €";
+            lblValorSugerido.Text = sugestao.SugestaoProximoMes.ToString("F2") + " €";
             // Exibe a média dos últimos meses (baseado até aos últimos 6)
             lblMediaValor.Text = "Média dos últimos meses (baseado até aos últimos 6):\n" +
                                  sugestao.MediaUltimosMeses.ToString("F2") + " €";

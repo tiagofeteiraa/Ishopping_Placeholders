@@ -9,7 +9,7 @@ namespace Ishopping.Model
 {
     internal class Compra
     {
-        
+        //chave primária
         public int Id { get; set; }
 
         public string NomeCompra { get; set; }
@@ -27,7 +27,7 @@ namespace Ishopping.Model
         public bool Fechada { get; set; }
         
         public decimal GastoTotal { get; set; }
-
+        //propriedade de navegação para itens de compra
         public virtual ICollection<ItemCompra> ItensCompras { get; set; }
 
 

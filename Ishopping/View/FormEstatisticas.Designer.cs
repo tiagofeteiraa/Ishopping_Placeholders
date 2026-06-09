@@ -24,7 +24,7 @@
             this.gridComprasFechadas = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblSugestaoValor = new System.Windows.Forms.Label();
+            this.lblValorSugerido = new System.Windows.Forms.Label();
             this.lblMediaValor = new System.Windows.Forms.Label();
             this.btnGerarSugestao = new System.Windows.Forms.Button();
             this.btnFechar = new System.Windows.Forms.Button();
@@ -99,23 +99,23 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(218, 436);
+            this.label5.Location = new System.Drawing.Point(207, 436);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 15);
             this.label5.TabIndex = 7;
             this.label5.Text = "Sugestão:";
             // 
-            // lblSugestaoValor
+            // lblValorSugerido
             // 
-            this.lblSugestaoValor.AutoSize = true;
-            this.lblSugestaoValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSugestaoValor.Location = new System.Drawing.Point(270, 436);
-            this.lblSugestaoValor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblSugestaoValor.Name = "lblSugestaoValor";
-            this.lblSugestaoValor.Size = new System.Drawing.Size(12, 15);
-            this.lblSugestaoValor.TabIndex = 8;
-            this.lblSugestaoValor.Text = "-";
+            this.lblValorSugerido.AutoSize = true;
+            this.lblValorSugerido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorSugerido.Location = new System.Drawing.Point(270, 436);
+            this.lblValorSugerido.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblValorSugerido.Name = "lblValorSugerido";
+            this.lblValorSugerido.Size = new System.Drawing.Size(12, 15);
+            this.lblValorSugerido.TabIndex = 8;
+            this.lblValorSugerido.Text = "-";
             // 
             // lblMediaValor
             // 
@@ -131,7 +131,7 @@
             // btnGerarSugestao
             // 
             this.btnGerarSugestao.Location = new System.Drawing.Point(67, 432);
-            this.btnGerarSugestao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGerarSugestao.Margin = new System.Windows.Forms.Padding(2);
             this.btnGerarSugestao.Name = "btnGerarSugestao";
             this.btnGerarSugestao.Size = new System.Drawing.Size(136, 21);
             this.btnGerarSugestao.TabIndex = 6;
@@ -142,7 +142,7 @@
             // btnFechar
             // 
             this.btnFechar.Location = new System.Drawing.Point(527, 485);
-            this.btnFechar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFechar.Margin = new System.Windows.Forms.Padding(2);
             this.btnFechar.Name = "btnFechar";
             this.btnFechar.Size = new System.Drawing.Size(136, 21);
             this.btnFechar.TabIndex = 10;
@@ -163,7 +163,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnGerarSugestao);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.lblSugestaoValor);
+            this.Controls.Add(this.lblValorSugerido);
             this.Controls.Add(this.lblMediaValor);
             this.Controls.Add(this.btnFechar);
             this.Name = "FormEstatisticas";
@@ -185,7 +185,7 @@
         private System.Windows.Forms.DataGridView gridComprasFechadas;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblSugestaoValor;
+        private System.Windows.Forms.Label lblValorSugerido;
         private System.Windows.Forms.Label lblMediaValor;
         private System.Windows.Forms.Button btnGerarSugestao;
         private System.Windows.Forms.Button btnFechar;
