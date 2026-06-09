@@ -9,7 +9,9 @@ namespace Ishopping.View
 {
     public partial class FormEditarCompra : Form
     {
+        // Armazena o ID da compra que está sendo editada
         private int _idCompra;
+        // Indica se a compra está em modo de leitura (fechada) ou edição (aberta)
         private bool _soLeitura;
 
         public FormEditarCompra(int idCompra)
@@ -18,8 +20,10 @@ namespace Ishopping.View
             _idCompra = idCompra;
         }
 
+        // Carrega os detalhes da compra e os itens associados ao abrir o formulário
         private void FormEditarCompra_Load(object sender, EventArgs e)
         {
+            // Carregar detalhes da compra
             Compra compra = ComprasController.ObterCompraPorId(_idCompra);
             if (compra == null) { this.Close(); return; }
 
@@ -29,6 +33,7 @@ namespace Ishopping.View
             labelEstado.Text = compra.Fechada ? "Fechada" : "Em Aberto";
             labelDataCriacao.Text = "Criada: " + compra.DataCriacao.ToString("dd/MM/yyyy HH:mm");
 
+            // Se a compra estiver fechada, desabilitar edição
             if (_soLeitura)
             {
                 textBoxNomeCompra.ReadOnly = true;
@@ -79,7 +84,7 @@ namespace Ishopping.View
             ComprasController.AtualizarCompra(_idCompra, textBoxNomeCompra.Text);
         }
 
-        // Abre o formulário dedicado para gerir itens previstos
+        // Abre o formulário para gerir itens previstos
         private void btnGerarItensPrevistos_Click(object sender, EventArgs e)
         {
             FormAdicionarItemPrevisto form = new FormAdicionarItemPrevisto(_idCompra);
@@ -87,7 +92,7 @@ namespace Ishopping.View
             MostrarItens();
         }
 
-        // Abre o formulário dedicado para adicionar itens não previstos
+        // Abre o formulário para adicionar itens não previstos
         private void btnAdicionarNaoPrevistos_Click(object sender, EventArgs e)
         {
             FormAdicionarItemNaoPrevisto form = new FormAdicionarItemNaoPrevisto(_idCompra);

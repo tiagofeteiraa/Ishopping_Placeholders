@@ -105,7 +105,7 @@ namespace Ishopping.View
             ComprasController.ExportarCSV();
         }
 
-        // Filtro alterado
+       
         private void comboBoxFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
             MostrarCompras();

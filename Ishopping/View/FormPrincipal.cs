@@ -61,7 +61,8 @@ namespace Ishopping.View
 
         private void btnEstatisticas_Click(object sender, EventArgs e)
         {
-          
+            FormEstatisticas formEstatisticas = new FormEstatisticas();
+            formEstatisticas.ShowDialog();
         }
 
         // Duplo clique na lista de compras abre o Modo Compra

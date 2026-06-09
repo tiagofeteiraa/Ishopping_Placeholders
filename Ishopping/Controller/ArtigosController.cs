@@ -25,7 +25,7 @@ namespace Ishopping.Controller
             {
                 var lista = db.Artigos
                     .Include(a => a.TipoArtigo)
-                    .AsNoTracking()  // Adiciona isto para evitar problemas de rastreamento
+                    .AsNoTracking()  
                     .OrderBy(a => a.Nome)
                     .ToList()
                     .Select(a => new ArtigoGridDto

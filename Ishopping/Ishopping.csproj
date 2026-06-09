@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Controller\ArtigosController.cs" />
     <Compile Include="Controller\ComprasController.cs" />
+    <Compile Include="Controller\EstatisticasController.cs" />
     <Compile Include="Controller\ItemNaoPrevistosController.cs" />
     <Compile Include="Controller\ItemPrevistosController.cs" />
     <Compile Include="Controller\LoginController.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Model\ItemPrevisto.cs" />
     <Compile Include="Model\Orcamento.cs" />
     <Compile Include="Model\Sessao.cs" />
+    <Compile Include="Model\SugestaoOrcamento.cs" />
     <Compile Include="Model\TipoArtigo.cs" />
     <Compile Include="Model\Utilizador.cs" />
     <Compile Include="View\FormAdicionarItemNaoPrevisto.cs">
@@ -103,6 +105,12 @@
     </Compile>
     <Compile Include="View\FormEditarCompra.Designer.cs">
       <DependentUpon>FormEditarCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormEstatisticas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormEstatisticas.Designer.cs">
+      <DependentUpon>FormEstatisticas.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormGestaoArtigos.cs">
       <SubType>Form</SubType>
@@ -156,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormEditarCompra.resx">
       <DependentUpon>FormEditarCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormEstatisticas.resx">
+      <DependentUpon>FormEstatisticas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormGestaoArtigos.resx">
       <DependentUpon>FormGestaoArtigos.cs</DependentUpon>

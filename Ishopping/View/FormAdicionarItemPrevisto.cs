@@ -7,6 +7,7 @@ namespace Ishopping.View
 {
     public partial class FormAdicionarItemPrevisto : Form
     {
+        // Armazena o ID da compra para a qual os itens previstos estão sendo geridos
         private readonly int _idCompra;
 
         public FormAdicionarItemPrevisto(int idCompra)
@@ -15,6 +16,7 @@ namespace Ishopping.View
             _idCompra = idCompra;
         }
 
+        // Carrega os tipos de artigos e os itens previstos para a compra ao abrir o formulário
         private void FormAdicionarItemPrevisto_Load(object sender, EventArgs e)
         {
             ArtigosController.CarregarTiposArtigos(comboBoxTipoArtigo);
@@ -23,6 +25,7 @@ namespace Ishopping.View
 
         private void MostrarItens()
         {
+            // Obtém os itens previstos para a compra e exibe na DataGridView
             var itens = ItemPrevistosController.ObterItensPrevisos(_idCompra);
             var lista = itens.ConvertAll(i => new
             {
@@ -39,8 +42,10 @@ namespace Ishopping.View
             dataGridViewItens.MultiSelect = false;
         }
 
+        // Carrega os artigos correspondentes ao tipo selecionado
         private void comboBoxTipoArtigo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (comboBoxTipoArtigo.SelectedValue is int idTipo && idTipo > 0)
                 ItemPrevistosController.CarregarArtigosPorTipo(idTipo, comboBoxArtigo);
         }
@@ -50,8 +55,10 @@ namespace Ishopping.View
             
         }
 
+        // Botão para adicionar um novo item previsto
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            // Validações 
             if (comboBoxArtigo.SelectedValue == null)
             {
                 MessageBox.Show("Selecione um artigo.");
@@ -62,7 +69,7 @@ namespace Ishopping.View
                 MessageBox.Show("Indique uma quantidade válida.");
                 return;
             }
-
+            // Obtém o ID do artigo selecionado
             int idArtigo = (int)comboBoxArtigo.SelectedValue;
             bool ok = ItemPrevistosController.AdicionarItemPrevisto(_idCompra, idArtigo, qtd, out string msg);
             MessageBox.Show(msg);
@@ -74,6 +81,7 @@ namespace Ishopping.View
             }
         }
 
+        // Botão para remover um item previsto selecionado
         private void btnRemover_Click(object sender, EventArgs e)
         {
             if (dataGridViewItens.SelectedRows.Count == 0)
@@ -82,9 +90,11 @@ namespace Ishopping.View
                 return;
             }
 
+            // Obtém o ID do item previsto selecionado
             var idItem = dataGridViewItens.SelectedRows[0].Cells["Id"].Value;
             if (idItem == null) return;
 
+            // Confirmação antes de remover
             if (MessageBox.Show("Remover este item previsto?", "Confirmar",
                 MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
