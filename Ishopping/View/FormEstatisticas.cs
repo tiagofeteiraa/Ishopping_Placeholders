@@ -5,52 +5,65 @@ using System.Windows.Forms;
 
 namespace Ishopping.View
 {
+    // Formulário de estatísticas com dois separadores: histórico/percentagens e sugestões
     public partial class FormEstatisticas : Form
     {
-        // DataGridView para apresentar o histórico de orçamentos
-        public static DataGridView historicoOrcamentos;
-
-        // DataGridView para apresentar as estatísticas dos artigos
-        public static DataGridView listagemPercentagem;
-
         public FormEstatisticas()
         {
             InitializeComponent();
-
-            // Atribuir as DataGridViews às variáveis estáticas para acesso global
-            historicoOrcamentos = gridHistoricoOrcamento;
-            // Atribuir a DataGridView para as estatísticas dos artigos
-            listagemPercentagem = gridComprasFechadas;
         }
 
+        // Quando o formulário abre, carrega logo os dados do primeiro separador
         private void FormEstatisticas_Load(object sender, EventArgs e)
         {
-            // Carregar histórico de orçamentos
-            EstatisticasController.MostrarHistoricoOrcamento();
-
-            // carregar estatísticas dos artigos
-            EstatisticasController.MostrarEstatisticasArtigos();
+            CarregarDadosPrimeiroSeparador();
         }
 
+        // Carrega o histórico de orçamentos e as percentagens de compras fechadas nas respetivas grids
+        private void CarregarDadosPrimeiroSeparador()
+        {
+            EstatisticasController.CarregarHistoricoOrcamentosNaGrid(gridHistoricoOrcamento);
+            EstatisticasController.CarregarPercentagensComprasFechadasNaGrid(gridComprasFechadas);
+        }
+
+        // Clique no botão "Gerar Sugestão": calcula e mostra a sugestão de orçamento para o próximo mês
         private void btnGerarSugestao_Click(object sender, EventArgs e)
         {
+            // Limpa os valores anteriores antes de gerar uma nova sugestão
+            LimparCamposSugestao();
+
             string mensagem;
+            SugestaoOrcamento sugestao =
+                EstatisticasController.CalcularSugestaoOrcamentoProximoMes(out mensagem);
 
-            // sugestão de orçamento últimos 6 meses
-            SugestaoOrcamento sugestao = EstatisticasController.SugerirOrcamento(out mensagem);
+            // Mostra mensagem de sucesso ou aviso consoante o resultado
+            MessageBox.Show(mensagem, "Sugestão de Orçamento",
+                            MessageBoxButtons.OK,
+                            sugestao != null ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
 
-            // Exibe a mensagem de sugestão
-            MessageBox.Show(mensagem);
-
+            // Se não foi possível calcular a sugestão, não há nada a mostrar
             if (sugestao == null) return;
 
-            // Exibe a sugestão de orçamento para o próximo mês e a média dos últimos meses
-            lblValorSugerido.Text = sugestao.SugestaoProximoMes.ToString("F2") + " €";
-            // Exibe a média dos últimos meses (baseado até aos últimos 6)
-            lblMediaValor.Text = "Média dos últimos meses (baseado até aos últimos 6):\n" +
-                                 sugestao.MediaUltimosMeses.ToString("F2") + " €";
+            // Preenche os campos com os valores calculados
+            PreencherCamposSugestao(sugestao);
         }
-        // Botão para fechar o formulário
+
+        // Preenche os labels com o valor sugerido e a média calculada
+        private void PreencherCamposSugestao(SugestaoOrcamento sugestao)
+        {
+            lblValorSugerido.Text = sugestao.SugestaoProximoMes.ToString("F2") + " €";
+            lblMediaValor.Text = "Média dos últimos meses (máx. 6):\n"
+                                  + sugestao.MediaUltimosMeses.ToString("F2") + " €";
+        }
+
+        // Limpa os labels da sugestão para não ficarem valores desatualizados visíveis
+        private void LimparCamposSugestao()
+        {
+            lblValorSugerido.Text = string.Empty;
+            lblMediaValor.Text = string.Empty;
+        }
+
+        // Fecha o formulário de estatísticas
         private void btnFechar_Click(object sender, EventArgs e)
         {
             this.Close();
