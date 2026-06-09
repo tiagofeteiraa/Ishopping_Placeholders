@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace Ishopping.Model
 {
-    internal class AppDbInitializer : DropCreateDatabaseAlways<IShoppingContext>
+    internal class AppDbInitializer : DropCreateDatabaseAlways<IShoppingContext> //limpar dados cada vez que arrancar o programa
     //internal class AppDbInitializer : DropCreateDatabaseIfModelChanges<IShoppingContext>
     {
         protected override void Seed(IShoppingContext context)
